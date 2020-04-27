@@ -12,7 +12,7 @@ html, body {
 
 #top-splash {
   padding: 7rem 5rem;
-  background: #9E3737;
+  background: #A52D2C;
 }
 #top-splash h1 {
   color: #0C2C5B;
@@ -43,7 +43,7 @@ html, body {
   list-style: none;
 }
 #background-info ul li {
-  color: #9E3737;
+  color: #A52D2C;
 }
 #background-info ul li a::before {
   content: "» ";
@@ -51,7 +51,7 @@ html, body {
 #background-info ul li a {
   color: inherit;
   text-decoration: none;
-  border-bottom: 1px dotted #9E3737;
+  border-bottom: 1px dotted #A52D2C;
 }
 #background-info ul li a:hover {
   color: #CFCFCF;
