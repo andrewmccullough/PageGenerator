@@ -33,3 +33,6 @@ with open(DirectoryFile, "r") as SourceFile:
 		code = row[2].strip()
 		school = row[3].strip()
 		toHTML.GenerateHTML(FirstName, LastName, code, school)
+	toHTML.GenerateHTML("JMU", "Cadet", "JMUexample", "JMU")
+	toHTML.GenerateHTML("UVA", "Cadet", "UVAexample", "UVA")
+	toHTML.GenerateHTML("LU", "Cadet", "LUexample", "LU")

@@ -59,44 +59,48 @@ def GenerateHTML(FirstName, LastName, OutputFilename, school, GeneralMessageFile
 
 	# process personal messages
 	PersonalMessages = """"""
-	book = xlrd.open_workbook("messages/" + LastName.lower() + ".xlsx")
-	worksheet = book.sheet_by_index(0)
-	if worksheet.nrows > 0:
-		for entry in range(worksheet.nrows):
-			sender = worksheet.cell(entry, 0).value
-			body = worksheet.cell(entry, 1).value
+	try:
+		book = xlrd.open_workbook("messages/" + LastName.lower() + ".xlsx")
+		worksheet = book.sheet_by_index(0)
+		if worksheet.nrows > 0:
+			for entry in range(worksheet.nrows):
+				sender = worksheet.cell(entry, 0).value
+				body = worksheet.cell(entry, 1).value
 
-			BodyParsed = body.split("\n")
-			paragraphs = """"""
-			for paragraph in BodyParsed:
-				if len(paragraph) > 1:
-					ParagraphTemplate = """<p>{0}</p>"""
-					paragraphs += ParagraphTemplate.format(paragraph)
+				BodyParsed = body.split("\n")
+				paragraphs = """"""
+				for paragraph in BodyParsed:
+					if len(paragraph) > 1:
+						ParagraphTemplate = """<p>{0}</p>"""
+						paragraphs += ParagraphTemplate.format(paragraph)
 
-			MessageTemplate = """
-				<div class="message">
-		            <div class="body">
-		                {0}
-		            </div>
-		            <p class="sender">{1}</p>
+				MessageTemplate = """
+					<div class="message">
+			            <div class="body">
+			                {0}
+			            </div>
+			            <p class="sender">{1}</p>
+			        </div>
+				"""
+
+				PersonalMessages += MessageTemplate.format(paragraphs, sender)
+			PersonalMessagesSection = """
+		        <div id="personal-messages">
+	                <h1>Messages for you</h1>
+					{0}
 		        </div>
 			"""
-
-			PersonalMessages += MessageTemplate.format(paragraphs, sender)
-		PersonalMessagesSection = """
-	        <div id="personal-messages">
-                <h1>Messages for you</h1>
-				{0}
-	        </div>
-		"""
-		PersonalMessagesSection = PersonalMessagesSection.format(PersonalMessages)
-		Navigation = """
-			<ul>
-	            <li><a href="#general-messages">Messages for the Class of 2020</a></li>
-	            <li><a href="#personal-messages">Messages for you</a></li>
-	        </ul>
-		"""
-	else:
+			PersonalMessagesSection = PersonalMessagesSection.format(PersonalMessages)
+			Navigation = """
+				<ul>
+		            <li><a href="#general-messages">Messages for the Class of 2020</a></li>
+		            <li><a href="#personal-messages">Messages for you</a></li>
+		        </ul>
+			"""
+		else:
+			PersonalMessagesSection = """"""
+			Navigation = """"""
+	except FileNotFoundError:
 		PersonalMessagesSection = """"""
 		Navigation = """"""
 
